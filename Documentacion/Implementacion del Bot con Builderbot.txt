@@ -1,0 +1,24 @@
+Instalación
+https://www.youtube.com/watch?v=22jiE2Z3XGM&t=615s
+https://builderbot.vercel.app/es
+Para documentacion sobre flujos, visita esta URL: https://www.youtube.com/watch?v=UgoS8PXxe-A&list=PL_WGMLcL4jzWPhdhcUyhbFU6bC0oJd2BR
+https://www.youtube.com/watch?v=UgoS8PXxe-A&t=1110s
+
+
+Requerimientos
+- Nodejs 18 o superior
+- Servidor Web nginx
+
+
+Proceso de instalación del bot
+
+- Abro la terminal de ubuntu
+- Me ubico en la carpeta donde se creará el proyecto con el comando cd
+- escribo: pnpm create builderbot@latest y sigo el asistente
+-- Respuestas: yes / Baileys / Memory / Typescript
+- escribo npm install para instalar las dependencias según lo que indica el package.json
+- npm run dev para correr el bot
+
+
+Referencias para consultar
+- https://github.com/GonzaSab/GeminiBuilderBot --> Base-Gemini-TS: Chatbot de WhatsApp con Integración a la API de Gemini de Google

@@ -1,0 +1,188 @@
+// Flujos primarios
+
+const flowGracias = addKeyword (['gracias', 'agradecido', 'agradecida', 'te agradezco'])
+    .addAnswer('Es un gran placer poder servirte, estamos a tu orden.')
+
+const flowUbicacion = addKeyword (['ubicacion', 'ubicación', 'ubicado','donde estan ubicados', 'dónde están ubicados', 'donde te ubicas', 'dónde te ubicas', 'dónde se ubican', 'donde se ubican'])
+    .addAnswer('Trabajamos desde La Victoria-Aragua, pero atendemos a particulares y empresas entre Las Tejerías y Maracay, en esta zona tenemos delivery gratis, fuera de ella, enviamos por Domesa, MRW, o Tealca')
+
+const flowTienda = addKeyword ('Escribo desde la tienda virtual de ITSCA, estoy interesado en')
+    .addAnswer('*Gracias por visitar nuestra tienda en línea*!\n\nNormalmente toda la información está justo en la página que te trajo a este chat, de no ser el caso por favor dejanos sáber cuál es tu inquietud o requerimiento.')
+
+const flowBeam = addKeyword (['beam',  'video bin', 'bean', 'video bean', 'video beam', '7'])
+    .addAnswer('Tenemos el servicio de Alquiler de Video Beam por hora, únicamente para El Consejo, La Victoria, Cagua, Turmero y Maracay, por el precio base de 5$ la hora.\n\nToda la información que requieres está disponible en el siguiente link a nuestra página. Por favor, asegúrate de haber leído las *CONDICIONES DEL SERVICIO*: https://itsca.net/producto/servicio-de-alquiler-de-video-beam/?ref=bot\n\nPregunta lo que necesites si aún te queda alguna inquietud. Si deseas contratar el servicio, requerimos que nos envíes:\n- La fecha, hora y dirección precisa del evento para darte confirmación de que tenemos disponible en agenda el tiempo que se requiere para servirles debidamente.\n- Nombre y número de teléfono de quien nos recibe.\n\nNos dará mucho gusto apoyarte en el evento.', {media:'https://www.itsca.net/wp-content/uploads/Video-Beam-2.jpg'})
+    .addAnswer('Hay algo más en lo que te pueda ayudar?\n\n[0] Regresar', {delay: 500,})
+
+const flowPagos = addKeyword (['pago', 'medios de pago', 'te puedo pagar', 'zelle', 'usdt', 'binance', 'airtm','divisas'])
+    .addAnswer('💰💰💰💰💰💰💰\n\nPuedes pagar con:\n✅ Divisas\n✅ Pago móvil\n✅ USDT\n✅ Zinli, o\n✅ AirTm.')
+
+const flowPagomovil = addKeyword (['pagomovil', 'pago movil', 'pago móvil'])
+    .addAnswer('💰💰💰💰💰💰💰\n\nCedula: 11183350\nMovil: 0412-8471525\nBancos: Mercantil o Exterior\n\nRecuerda pasarme el capture del pago. Gracias')
+
+// flujos dependientes del principal
+
+const endesarrolloFlow = addKeyword(['1', '2', '3', '4', '5', '6'])
+.addAnswer(
+[
+    'Esta respuesta aun esta en desarrollo, te pedimos disculpas\n',
+    '0️⃣ Regresar'
+],null
+);
+
+
+const productosFlow = addKeyword('1')
+.addAnswer('¡Claro! Te invitamos a visitar nuestra tienda en línea donde encontrarás una amplia variedad de productos. \n\n🛒 Puedes consultar nuestro catálogo completo en este enlace:\nhttps://itsca.net/tienda?ref=bot\n\nPero cuéntame, ¿qué dispositivo estás buscando?, si no lo tenemos igual podemos buscarlo para ti. Y recuerda que tenemos delivery gratis en El Consejo, La Victoria, Cagua, Turmero y Maracay.')
+.addAnswer(
+[
+  '\n¿En qué tipo producto estás interesado?\n',
+  '1️⃣ Cables y adaptadores',
+  '2️⃣ Internet, Redes y Wifi',
+  '3️⃣ Accesorios',
+  '4️⃣ Almacenamiento',
+  '5️⃣ Domótica',
+  '0️⃣ Regresar'
+],null, null, endesarrolloFlow
+);
+
+const serviciosFlow = addKeyword('2')
+.addAnswer('ITS, C.A o ITSCA es una empresa de servicios de tecnología para usuarios domésticos, comerciales e industriales.\n\nNuestros servicios comprenden varios aspectos, desde la venta de todo tipo de dispositivos de computación y sus accesorios, sistemas y cámaras de seguridad, hasta su implementación, soporte y mantenimiento.\nAdministramos redes y servidores, y también alquilamos *video beam* por horas.\n\nAtendemos clientes en Las Tejerías, La Victoria, Cagua, Turmero y Maracay, pero ya que virtualmente no hay límites, incluso de forma remota hemos podido apoyar a personas y empresas en otros paises.\n\nSi quieres saber más de nosotros, visita: http://itsca.net/servicios/?ref=bot')
+.addAnswer('Trabajamos desde La Victoria-Aragua, en la zona de atención y servicios tenemos delivery gratis, fuera de ella, enviamos por Domesa, MRW, o Tealca', {delay: 500,})
+.addAnswer('Si lo deseas, puedes dejarnos tu inquietud y con gusto te lo aclaramos, o mejor, podemos concertar una visita y así vemos la mejor forma de apoyarte.', {delay: 500,})
+.addAnswer(
+[
+  '\n¿En qué tipo servicio estás interesado?\n',
+  '1️⃣ Cámaras de seguridad',
+  '2️⃣ Administración de redes y Wifi',
+  '3️⃣ Diseño Web',
+  '4️⃣ Configuración de dispositivos',
+  '5️⃣ Servicio técnico y soporte a usuario',
+  '6️⃣ Visita de diagnóstico',
+  '7️⃣ Alquiler de Video Beam',
+  '0️⃣ Regresar'
+],null, null, [flowBeam, endesarrolloFlow]
+);
+
+const faqFlow = addKeyword('3')
+.addAnswer('Hemos preparado el siguiente link, donde puedes consultar una lista organizada de lo que a la mayoría de las personas les causa interés, curiosidad o inquietud.\n\nFAQ: 👉 https://itsca.net/faq/?ref=bot\n\nApreciaríamos que visites en link, ya que lo mas probable, es que ahí esté la respuesta que buscas.')
+
+const salirFlow = addKeyword('4')
+.addAnswer('A la brevedad posible, alguien seguirá con este chat para darte mejor apoyo y respuestas. Si es la primera vez que nos escribes, nos ayudará mucho saber tu nombre, desde dónde escribes y una breve descripcion de lo que requieres.\n\n*Gracias por escribirnos*')
+
+const welcomeFlow = addKeyword ('Hola')
+    .addAnswer('Bienvenido al ChatBot de ITSCA.NET\n\n- Estás buscando algún producto de tecnología?, Mira todo nuestro catálogo en: https://www.itsca.net/categoria-producto/todos/?ref=wabot\n- Si quieres conocer de nuestros servicios, entra en: https://www.itsca.net/servicios?ref=wabot\n\nA ver... ¿Cuéntame cómo podemos apoyarte?', {media:'https://www.itsca.net/wp-content/uploads/Carrito_Itsca.png'})
+    .addAnswer('Esribe "*BOT*" para guiarte con un menú de atención inmediata.')
+
+const flowBienvenida = addKeyword(['bot', 'hi', '0'])
+    .addAnswer(`🙌 Bienvenido al *Chatbot* de ITSCA.NET\n\nPara atenderte más rápido, quisiera ofrecerte las siguientes opciones de información.`)
+    .addAnswer(
+        [
+            'Escribe el *NÚMERO* de la opción que quieres:\n',
+            '1️⃣ *Productos* que vendemos 🛒',
+            '2️⃣ *Servicios* que prestamos ⚙️',
+            '3️⃣ *FAQ* o preguntas frecuentes ❓',
+            '4️⃣ *Salir* del bot 💪'
+        ].join('\n'),
+        { delay: 800, capture: true },
+        async (ctx, { fallBack }) => {
+            console.log('ctx.body:', ctx.body); // Verifica lo que hay en ctx.body
+            
+            const input = ctx.body ? ctx.body.trim() : ''; // Captura y limpia la entrada
+            
+            if (!input) {
+                return fallBack('No has ingresado ninguna opción. Por favor, escribe el número de la opción que deseas:\n1. Productos\n2. Servicios\n3. FAQ\n4. Salir');
+            }
+
+            console.log('Input recibido:', input); // Depuración
+
+            // Verifica si el input es uno de los valores válidos
+            if (!['1', '2', '3', '4'].includes(input)) {
+                console.log('Opción no válida:', input);
+                return fallBack('Opción no válida. Por favor, escribe el número de la opción que deseas:\n1. Productos\n2. Servicios\n3. FAQ\n4. Salir');
+            }
+
+            console.log('Input válido:', input); // Depuración
+        },[productosFlow, serviciosFlow, faqFlow, salirFlow]
+    );
+
+
+
+
+
+************************************************************
+Flujos valido cuando se ha cambiado el Payload en el
+index.cjs para escuchar los mensajes de los grupos también
+***********************************************************
+
+const flowGroup = addKeyword<Provider, Database>(EVENTS.WELCOME)
+    .addAction(async (ctx, ctxFn) => {
+        const isMessageFromGroup = !!ctx.message.extendedTextMessage
+        console.log(ctx)
+        if (isMessageFromGroup) {
+            //const groupJid = ctx.from.split('@')[0]
+            console.log('Nombre de usuario:', ctx.name)
+            console.log('Mensaje del grupo:', ctx.body)
+            //console.log('JID del grupo:', ctx.message.extendedTextMessage.contextInfo)
+            //await ctxFn.provider.sendText('120363352541309767@g.us', 'Hola _*' + (ctx.name) + '*_, bienvenido a nuestro chatbot de ITSCA.NET. ¿En qué podemos ayudarte hoy?')
+        } else {
+            console.log(ctx.name)
+            //await ctxFn.flowDynamic ('Hola _*' + (ctx.name) + '*_, bienvenido a nuestro chatbot de ITSCA.NET. ¿En qué podemos ayudarte hoy?')
+        }})
+
+
+
+************************************************************
+Flujos con botones
+Solo funciona cuando el provider es META.
+Requiere de una api key y otras cosas.
+************************************************************
+
+const Productos = addKeyword ('Productos que vendemos')
+    .addAnswer('Tenemos una amplia gama de productos de tecnología, puedes verlos en nuestra tienda virtual',
+    {
+        buttons: [
+            { body: 'Ver productos', label: 'Ver productos'}
+        ]
+    })
+
+const flowMenu = addKeyword ('bot')
+    .addAnswer('Bienvenido, por favor selecciona una opción',
+    {
+        capture: true,
+        buttons: [
+            { body: 'Productos que vendemos', label: 'Productos que vendemos'}
+            { body: 'Qué servicios prestamos', label: 'Qué servicios prestamos'}
+            { body: 'Preguntas frecuentes', label: 'Preguntas frecuentes'}
+            { body: 'Salir del bot'}
+        ]
+    }, null,
+    [Productos, Servicios, Preguntas, Salir])
+
+
+
+
+************************************************************
+Flujos con addAction
+************************************************************
+
+// Flow para el saludo de bienvenida
+const flowSaludo = addKeyword(['hi'])
+.addAction(async (ctx, ctxFn) => {
+        console.log(ctx)
+        const ahora = Date.now();
+        await ctxFn.flowDynamic ('Hola _*' + (ctx.name) + '*_, '+ obtenerSaludo(ahora) +' gracias por esribir a ITSCA.NET. ¿En qué podemos ayudarte hoy?')
+    })
+
+
+
+************************************************************
+Flujos que te permite mostrar el preview de un link
+To see link preview, link preview js must be installed:\n`pnpm i link-preview-js`
+************************************************************
+const pruebaFlow = addKeyword('pr')
+    .addAnswer(`🙌 Example linkPreview`)
+    .addAction(
+        async (_, { flowDynamic }) => {
+            await flowDynamic('To see link preview, link preview js must be installed:\n`pnpm i link-preview-js`')
+            await flowDynamic('*Producto:*\nhttps://itsca.net/producto/ssd-m-2-pcie-gen3x4-addlink/?ref=2')
+        }
+    ) 

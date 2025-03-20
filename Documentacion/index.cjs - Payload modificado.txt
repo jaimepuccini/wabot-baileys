@@ -1,0 +1,32 @@
+Objetivo de este cambio:
+Que el bot sea capaz de escuchar los mensajes que vienen de un grupo de whatsapp y no solo de cada contacto.
+
+
+************************************************
+
+
+/node_modules/provider-baileys/dist/Index.cjs - Payload original - linea 30829 - Para escuchar mensajes entrantes de los grupos
+if (!baileyIsValidNumber(payload.from)) {
+	return;
+}
+
+
+Cambiada por:
+
+if (!baileyIsValidNumber(payload.from)){
+	payload.message = {
+		extendedTextMessage: {
+			text: payload?.message?.extendedTextMessage?.text,
+			previewType: 0,
+			contextinfo: payload?.message?.extendedTextMessage?.contextInfo,
+			inviteLinkGroupTypeV2: 0
+		},
+		messageContextInfo: {
+			deviceListMetadata: payload?.message?.messageContextInfo?.deviceListMetadata,
+			deviceListMetadataVersion: 2
+		},
+	}
+	payload.key.remoteJid = payload.key.participant
+	payload.key.participant = undefined
+	payload.from = payload.key.remoteJid
+}

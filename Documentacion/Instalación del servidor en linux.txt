@@ -1,0 +1,115 @@
+Referencias
+https://www.youtube.com/watch?v=u3YbNYAalDc
+https://www.youtube.com/watch?v=UgoS8PXxe-A&t=740s
+https://www.youtube.com/watch?v=3mwN9dlIuSA&t=548s
+
+Documentacion oficial de la API:
+https://bot-whatsapp.netlify.app/docs/install/
+
+
+*****************************************************************************
+
+
+Implementación:
+Use una máquina virtual de Ubuntu 20 con virtual box, en ella se hizo la instalación de nginx, nodejs 18.20.4, las dependencias requeridas, y tal como se señala en el video se creó el proyecto.
+
+Instalación de ngix
+- sudo apt upgrade (actualiza librerias)
+- sudo apt install -y nginx (instala nginx sin pedir confirmación)
+- sudo systemctl start nginex (inicia el servicio)
+- sudo systemctl enable nginex (habilita el inicio automático con el sistema)
+- sudo systemctl status nginex (consulta el estado del servicio)
+
+Instalacion de Node.js
+- sudo apt update
+- sudo apt-get install nodejs
+
+Instalacion de PNPM
+- sudo apt update
+- sudo apt-get install nodejs npm
+- sudo npm install -g pnpm
+- pnpm -v (muestra la versión de PNPM instalada)
+
+
+***** Configurando el Ngnex para que reciba peticiones de un html
+
+En el /etc/nginx/sites-available/defaul.conf se agregaron las siguientes lineas:
+
+location /api-whatsapp {
+    proxy_pass http://svrubuntu:3002;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}
+
+your_node_js_server es el nombre del servidor, en mi caso, "svrubuntu". 3000 es el puerto donde corre nodejs.
+
+En /etc/nginx/nginx.conf se agregaron las siguientes lineas justo despues de http { en la linea 12.
+
+server  {
+	listen 80;
+	server_name svrubuntu;
+
+	root /var/www/html;
+
+	location /send-message {
+		proxy_pass http://192.168.2.12:3002;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+
+
+INSTALACION DE PHP EN NGINX
+- sudo apt-get update
+- sudo apt install php-fpm
+- sudo apt install php-common php-mysql php-cgi php-mbstring php-curl php-gd php-xml php-xmlrpc php-pear (estos son los componentes)
+- php -v (verificar la version de php)
+- sudo systemctl status php8.1fpm
+- editar el /etc/nginx/sites-available/default.conf agregando de primero esta locacion:
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+	}
+- sudo nginx -t (verificamos que la sintaxis y estructura del cambio es correcta)
+- sudo systemctl restart nginx (reinicia nginx)
+- Creamos el archivo /var/www/html/phpinfo.php, dentro solo escribimos <?php phpinfo(); ?>
+- Probamos que ese archivo abra y se vea en el navegador (usa el IP o nombre del servidor)
+
+INSTALACION DE MYSQL EN NGINX
+Ref: https://www.youtube.com/watch?v=MG40sI581FY
+Ref: https://www.youtube.com/watch?v=uxocMv-AtaU
+
+- sudo apt-get update
+- sudo apt install mysql-server
+- sydo mysql_secure_installation
+	- Asegura contraseñas? N
+	  modificar esto con el comando ALTER_USER. Consultar: https:/dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-password-management (usa VPN)
+	- Remueve usuarios anonimos? N
+	- Desahilita la conexion remota de ROOT? N
+	- Remueve la BD de prueba? N
+	- Recarga la tabla de privilegios? N
+- sudo nano /etc/mysql/mysql.comf.d/mysqld.cnf (editar la configuracion)
+	- ubicamos a bind-address, y colocamos
+	  bind-address = 0.0.0.0 (para que pueda ser accedido desde cualquier punto de la red)
+- sudo service mysql restart (reinicia el servicio mysql)
+- Para setear la clave del root para Mysql
+	- sudo mysql -p
+	- ALTER USER 'root@localhost' IDENTIFIED WITH mysql_netive_password BY 'Itsca123';
+	tambien agregamos a usuario administrador con a misma clave para los accesos remotos.
+
+ABRIENDO PUERTOS EN EL FIREWALL
+- sudo ufw allow 80
+- sudo ufw allow 443
+- sudo ufw allow 10000 (panel SSH del webmin)
+- sudo ufw allow 22 (conexion via SSH)
+- sudo ufw allow 3306 (para Mysql)
+- sudo ufw enable
+
+INSTALACION DE WEBMIN
+ref: https://www.youtube.com/watch?v=Z4wSFTCjOXw
+- sudo apt-get update
+- sudo apt-get upgrade
+- curl -fsSL https://download.webmin.com/jcameron-key.asc | sudo gpg --dearmor -o /usr/share/keyrings/webmin.gpg
+- sudo sh -c 'echo "deb https://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list'	
+- sudo apt-get update
+- sudo apt-get install webmin 
+- Abrimos el navegador en la direccion: https://svrubuntu:10000 recuerda que no esta habilitado el https. Entramos con las mismas credenciales de usuario de la sesión de ubuntu en la que estás.

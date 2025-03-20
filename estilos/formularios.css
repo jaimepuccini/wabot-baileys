@@ -1,0 +1,162 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.8em;
+    background-color: #2b2a2a;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.contenedor-titulo {
+    display: flex;
+    align-items: center; /* Centramos verticalmente */
+}
+
+.contenedor-titulo h5 {
+    font-size: 13px;
+    margin: 13px 0px 4px;
+    border: 1px solid hsl(278, 100%, 50%);
+    padding: 3px 10px;
+}
+.contenedor-titulo hr {
+    background-color: hsl(278, 100%, 50%);
+    flex-grow: 1;
+    height: 1px;
+    border: none;
+    margin-top: 14px;
+}
+
+hr {
+    margin: 15px 0px 8px 0px;
+}
+
+img {
+    width: 100%;
+}
+
+/* Contenedor principal */
+.main_container {
+    max-width: 1200px; /* Ancho máximo de 1200px */
+    margin: 0 auto; /* Centrado horizontal */
+    padding: 0; /* Sin padding */
+}
+
+/* Contenedor de columnas */
+.nCols {
+    display: flex; /* Usar flexbox para alinear columnas */
+    flex-wrap: wrap; /* Permitir que las columnas se envuelvan */
+    justify-content: space-between; /* Espacio distribuido entre columnas */
+}
+
+/* Estilo para cada columna */
+.nCols > div {
+    flex: 1 1 calc(33% - 5px); /* Cada columna ocupa 1/3 del espacio disponible, menos un margen */
+    /* margin-bottom: 20px; /* Espacio entre filas de columnas */
+    margin: 20px auto;
+    max-width: 320px;
+    min-width: 320px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Asegurar que las columnas desbordadas se alineen a la izquierda */
+.nCols > div:nth-child(n+4) {
+    margin-left: 0; /* Eliminar margen izquierdo para columnas desbordadas */
+}
+
+.form_container {
+    max-width: 320px;
+    margin: auto;
+    padding: 5px;
+}
+
+/* Estilos de las etiquetas */
+label {
+    display: block;
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+}
+
+/* Estilos de los campos de entrada y textarea */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px 5px 0px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 15px;
+}
+
+select {
+    appearance: none;
+    border: 1px solid #ccc;
+    padding: 4px;
+    margin-top: 7px;
+    font-size: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    height: fit-content;
+    padding-right: 30px; /* Ajusta el espacio para la flecha */
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+/* Estilos del botón de envío */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Efecto hover para el botón de envío */
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+button {
+    margin: 10px 0 5px 0;
+}
+
+/* Mostrar u ocultar divs*/
+.oculto {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+
+/* SPAN */
+.SQLQuery {
+    color: #2a9d9d;
+    font-weight: bold;
+}
+
+.centertext {
+    text-align: center;
+}
+
+#imagen {
+    max-width: 350px;
+}

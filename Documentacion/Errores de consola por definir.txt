@@ -1,0 +1,31 @@
+Error #1
+
+
+✅ Connected Provider
+Tell a contact on your WhatsApp to write "hello"...
+
+Closing open session in favor of incoming prekey bundle
+Closing session: SessionEntry {
+  _chains: {
+    'BUZb6LYcla/RIRkrl6hOXMBZFtYzTszfsgmJh3fsSXZ9': { chainKey: [Object], chainType: 2, messageKeys: {} },
+    BU5Bqa3giGPp42g5LBdlbeOSf5NpIroiqsWU3UkcAZ5F: { chainKey: [Object], chainType: 1, messageKeys: {} }
+  },
+  registrationId: 255745813,
+  currentRatchet: {
+    ephemeralKeyPair: {
+      pubKey: <Buffer 05 4e 41 a9 ad e0 88 63 e9 e3 68 39 2c 17 65 6d e3 92 7f 93 69 22 ba 22 aa c5 94 dd 49 1c 01 9e 45>,
+      privKey: <Buffer 00 9f 47 2a fa 8c a6 d6 5a a8 09 39 7b d4 d7 4e 88 16 af d1 d0 da dc 82 f3 80 14 a2 96 aa 6e 52>
+    },
+    lastRemoteEphemeralKey: <Buffer 05 46 5b e8 b6 1c 95 af d1 21 19 2b 97 a8 4e 5c c0 59 16 d6 33 4e cc df b2 09 89 87 77 ec 49 76 7d>,
+    previousCounter: 0,
+    rootKey: <Buffer 99 a3 30 cc 57 57 15 a4 7d fd 31 4f 89 0b f6 3a 1f 69 d9 be 71 f8 f0 63 59 1b 30 7b 05 ad 8c 9a>
+  },
+  indexInfo: {
+    baseKey: <Buffer 05 8c 2c c5 46 20 ac 90 46 d2 a6 aa 3d e5 ee 7e 81 9f 0c 49 99 d3 21 d0 00 35 b5 f3 59 f0 4e 0f 67>,
+    baseKeyType: 2,
+    closed: -1,
+    used: 1741959759065,
+    created: 1741959759065,
+    remoteIdentityKey: <Buffer 05 36 fc dd 3d 45 81 84 11 3d aa f2 22 df b6 6d 30 45 35 4f 1b 99 d5 6b d5 61 d5 cf 0d 41 71 60 2d>
+  }
+}
