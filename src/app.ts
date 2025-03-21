@@ -47,7 +47,7 @@ const pool = mysql.createPool({
 const PORT = process.env.PORT ?? 3002
 
 
-// Cuepo principal de la aplicacion
+// Cuerpo principal de la aplicacion
 
 const main = async () => {
     const adapterFlow = createFlow(
@@ -81,7 +81,7 @@ const main = async () => {
 
             console.log(req.body);
 
-            if (tipo === 'U') { // Si el mensaje es unico o unitario
+            if (tipo === 'U') { // Si el mensaje es único o unitario
 
                 const tracklink2page = "➡️ "+link2page+"/?ref=bot"+ recipient.substr(-7) + "\n\n";
                 const personalizedMessage = saludo+" "+bodymessage+"\n"+tracklink2page+postdata;
